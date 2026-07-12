@@ -33,7 +33,7 @@ const TableInvite = memo(({ invite, refetch }: TTableInviteProps) => {
   const isMaxUsesReached = invite.maxUses && invite.uses >= invite.maxUses;
 
   const handleCopyCode = useCallback(() => {
-    const inviteUrl = `${getUrlFromServer()}/?invite=${invite.code}`;
+    const inviteUrl = `${window.location.origin}/?invite=${invite.code}`;
     navigator.clipboard.writeText(inviteUrl);
     toast.success(t('inviteCopied'));
   }, [invite.code, t]);
