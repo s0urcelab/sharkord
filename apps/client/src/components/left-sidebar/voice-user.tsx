@@ -29,7 +29,7 @@ type TVoiceUserProps = {
 const VoiceUser = memo(({ user, isOwnChannel = false }: TVoiceUserProps) => {
   const isOwnUser = useIsOwnUser(user.id);
   const { isMuted } = useStreamVolumeControl({ type: 'user', userId: user.id });
-  const { isActivelySpeaking, speakingEffectClass } = useSpeakingState(user.id);
+  const { isActivelySpeaking } = useSpeakingState(user.id);
   const can = useCan();
   const shouldShowMuteIndicator = isOwnChannel && !isOwnUser && isMuted;
   const canMove = !isOwnUser && can(Permission.MOVE_MEMBERS);
@@ -47,18 +47,22 @@ const VoiceUser = memo(({ user, isOwnChannel = false }: TVoiceUserProps) => {
       draggable={canMove}
       onDragStart={canMove ? handleDragStart : undefined}
       className={cn(
-        'flex items-center gap-2 px-2 py-1 rounded hover:bg-accent/30 text-sm',
-        canMove && 'cursor-grab active:cursor-grabbing'
+        'flex items-center gap-2 px-2 py-1 rounded hover:bg-accent/30 text-sm select-none',
+        canMove && 'cursor-grab active:cursor-grabbing',
+        isActivelySpeaking && 'bg-green-500/20'
       )}
     >
       <UserAvatar
         userId={user.id}
-        className={cn('h-5 w-5', isActivelySpeaking && speakingEffectClass)}
+        className="h-6 w-6"
         showUserPopover={true}
         showStatusBadge={false}
       />
 
-      <span className="flex-1 text-muted-foreground truncate text-xs">
+      <span className={cn(
+        'flex-1 truncate text-xs',
+        (user.state.micMuted || user.state.soundMuted) && 'text-muted-foreground'
+      )}>
         {user.name}
       </span>
 
@@ -68,18 +72,17 @@ const VoiceUser = memo(({ user, isOwnChannel = false }: TVoiceUserProps) => {
         )}
 
         <div>
-          {user.state.micMuted ? (
+          {user.state.micMuted && (
             <MicOff className="h-3 w-3 text-red-500" />
-          ) : (
+          )}
+          {isActivelySpeaking && (
             <Mic className="h-3 w-3 text-green-500" />
           )}
         </div>
 
         <div>
-          {user.state.soundMuted ? (
+          {user.state.soundMuted && (
             <HeadphoneOff className="h-3 w-3 text-red-500" />
-          ) : (
-            <Headphones className="h-3 w-3 text-green-500" />
           )}
         </div>
 

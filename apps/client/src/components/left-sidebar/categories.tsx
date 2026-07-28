@@ -94,7 +94,7 @@ const Category = memo(({ categoryId }: TCategoryProps) => {
               {...listeners}
               className="cursor-grab active:cursor-grabbing flex min-w-0 flex-1 items-center gap-2"
             >
-              <span className="truncate">{category.name}</span>
+              <span className="truncate text-sm">{category.name}</span>
               {!expanded && unreadCount > 0 && (
                 <UnreadCount
                   count={unreadCount}

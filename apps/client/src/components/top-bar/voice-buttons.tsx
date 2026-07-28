@@ -42,15 +42,14 @@ const VoiceButtons = memo(({ currentVoiceChannelId }: TVoiceButtonsProps) => {
     <>
       <VoiceOptionsController />
       <VolumeController channelId={currentVoiceChannelId} />
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={handleToggleVoiceChat}
-        className="h-7 px-2 transition-all duration-200 ease-in-out"
+      <Tooltip
+        content={isVoiceChatOpen ? t('closeVoiceChat') : t('openVoiceChat')}
       >
-        <Tooltip
-          content={isVoiceChatOpen ? t('closeVoiceChat') : t('openVoiceChat')}
-          asChild={false}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleToggleVoiceChat}
+          className="h-7 px-2 transition-all duration-200 ease-in-out"
         >
           <div className="relative flex items-center justify-center">
             <MessageSquare
@@ -65,8 +64,8 @@ const VoiceButtons = memo(({ currentVoiceChannelId }: TVoiceButtonsProps) => {
               className="absolute -top-2 -right-3 ml-0 min-w-4 h-4 px-1 text-[10px] leading-none"
             />
           </div>
-        </Tooltip>
-      </Button>
+        </Button>
+      </Tooltip>
     </>
   );
 });

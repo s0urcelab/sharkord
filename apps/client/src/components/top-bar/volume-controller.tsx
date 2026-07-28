@@ -150,17 +150,17 @@ const VolumeController = memo(({ channelId }: VolumeControllerProps) => {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-6 px-2 transition-all duration-200 ease-in-out"
-        >
-          <Tooltip content={t('volumeControls')} asChild={false}>
+      <Tooltip content={t('volumeControls')}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-6 px-2 transition-all duration-200 ease-in-out"
+          >
             <Volume2 className="w-4 h-4" />
-          </Tooltip>
-        </Button>
-      </PopoverTrigger>
+          </Button>
+        </PopoverTrigger>
+      </Tooltip>
       <PopoverContent align="end" className="w-80">
         <div className="space-y-2">
           <div className="flex items-center justify-between mb-3">

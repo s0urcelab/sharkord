@@ -143,7 +143,10 @@ const Voice = memo(
         {channel.type === 'VOICE' && (
           <div
             className="ml-6 space-y-1 mt-1"
-            onContextMenu={(e) => e.stopPropagation()}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
           >
             {users.map((user) => (
               <VoiceUser

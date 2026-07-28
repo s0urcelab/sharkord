@@ -117,5 +117,12 @@
   "reconnectingAttempt": "第 {{attempt}} 次尝试，共 {{total}} 次",
   "reconnectingHint": "会话已保留。服务器恢复后应用会自动继续。",
   "reconnectingAbort": "停止重新连接",
-  "removeImage": "移除图片"
-}
+  "removeImage": "移除图片",
+  "typeAMessage": "发送消息...",
+  "messageChannel": "给 \"{{name}}\" 发消息",
+  "userStatus": {
+    "online": "在线",
+    "idle": "空闲",
+    "offline": "离线"
+  }
+

@@ -40,8 +40,8 @@ const UserControl = memo(() => {
               {ownPublicUser.name}
             </span>
             <div className="flex items-center space-x-1">
-              <span className="text-xs text-muted-foreground capitalize">
-                {ownPublicUser.status}
+              <span className="text-xs text-muted-foreground">
+                {t(`userStatus.${ownPublicUser.status}`)}
               </span>
             </div>
           </div>
