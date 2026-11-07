@@ -113,8 +113,8 @@ const UserPopoverContent = memo(({ userId }: TUserPopoverContentProps) => {
                 status={user.status || UserStatus.OFFLINE}
                 className="h-3 w-3"
               />
-              <span className="text-xs text-muted-foreground capitalize">
-                {user.status || UserStatus.OFFLINE}
+              <span className="text-xs text-muted-foreground">
+                {t(`userStatus.${user.status || UserStatus.OFFLINE}`)}
               </span>
             </div>
           </div>

@@ -160,5 +160,11 @@
   "formatItalic": "斜体",
   "formatCode": "代码",
   "formatCodeBlock": "代码块",
-  "playVideo": "播放视频"
+  "playVideo": "播放视频",
+  "userStatus": {
+    "online": "在线",
+    "idle": "空闲",
+    "offline": "离线"
+  }
 }
+

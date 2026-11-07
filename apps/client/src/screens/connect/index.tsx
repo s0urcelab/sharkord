@@ -34,7 +34,14 @@ import {
 import { memo, useCallback, useMemo, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
+import './connect-header.css';
 import { useOidcLogin } from './hooks/use-oidc-login';
+
+/** corner badge on the server logo */
+const LOGO_BADGE = '🎙️';
+
+/** pixel title. the subset only covers this string plus the caret */
+const SITE_NAME = "s0urce's Mic";
 
 const Connect = memo(() => {
   const { t } = useTranslation('connect');
@@ -186,22 +193,28 @@ const Connect = memo(() => {
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="flex flex-col items-center gap-2 text-center">
-            <img
-              src={logoSrc}
-              alt="Sharkord"
-              className="block max-h-32 max-w-full rounded-[5px]"
-            />
-            {info?.name && (
-              <span className="text-xl font-bold leading-tight">
-                {info.name}
+            <div className="relative size-[100px] shrink-0">
+              <img
+                src={logoSrc}
+                alt={info?.name || 'Sharkord'}
+                className="size-full rounded-full object-cover shadow-[0px_4px_8px_rgba(0,0,0,0.04),0px_0px_2px_rgba(0,0,0,0.06),0px_0px_1px_rgba(0,0,0,0.04)]"
+              />
+              <span
+                aria-hidden
+                className="absolute right-0 bottom-0 flex size-10 items-center justify-center rounded-full bg-muted text-[20px] leading-none shadow-[0px_10px_20px_rgba(0,0,0,0.04),0px_2px_6px_rgba(0,0,0,0.04),0px_0px_1px_rgba(0,0,0,0.04)]"
+              >
+                {LOGO_BADGE}
               </span>
-            )}
+            </div>
+            <span className="connect-site-name max-w-full text-center wrap-break-word">
+              {SITE_NAME}
+            </span>
           </CardTitle>
           <PluginSlotRenderer slotId={PluginSlot.CONNECT_SCREEN} />
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           {info?.description && (
-            <span className="text-sm text-muted-foreground">
+            <span className="text-center text-sm text-muted-foreground">
               {info?.description}
             </span>
           )}
