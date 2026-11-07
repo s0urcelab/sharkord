@@ -8,7 +8,6 @@ import { Permission, PluginSlot } from '@sharkord/shared';
 import { cn } from '@sharkord/ui';
 import {
   HeadphoneOff,
-  Headphones,
   Mic,
   MicOff,
   Monitor,
@@ -37,9 +36,7 @@ const VoiceUser = memo(
       type: 'user',
       userId: user.id
     });
-    const { isActivelySpeaking, speakingEffectClass } = useSpeakingState(
-      user.id
-    );
+    const { isActivelySpeaking } = useSpeakingState(user.id);
     const can = useCan();
     const shouldShowMuteIndicator = isOwnChannel && !isOwnUser && isMuted;
     const canMove = !isOwnUser && can(Permission.MOVE_MEMBERS);
@@ -63,25 +60,25 @@ const VoiceUser = memo(
         draggable={canMove}
         onDragStart={canMove ? handleDragStart : undefined}
         className={cn(
-          'flex items-center gap-2 px-2 py-1 rounded hover:bg-accent/30 text-sm',
-          canMove && 'cursor-grab active:cursor-grabbing'
+          'flex items-center gap-2 px-2 py-1 rounded hover:bg-accent/30 text-sm select-none',
+          canMove && 'cursor-grab active:cursor-grabbing',
+          isActivelySpeaking && 'bg-green-500/20'
         )}
       >
+        <UserAvatar
+          userId={user.id}
+          className="h-6 w-6"
+          showUserPopover={true}
+          showStatusBadge={false}
+        />
+
         <span
           className={cn(
-            'relative flex rounded-full',
-            isActivelySpeaking && speakingEffectClass
+            'flex-1 truncate text-xs',
+            (user.state.micMuted || user.state.soundMuted) &&
+              'text-muted-foreground'
           )}
         >
-          <UserAvatar
-            userId={user.id}
-            className="h-5 w-5"
-            showUserPopover={true}
-            showStatusBadge={false}
-          />
-        </span>
-
-        <span className="flex-1 text-muted-foreground truncate text-xs">
           {user.name}
         </span>
 
@@ -96,23 +93,20 @@ const VoiceUser = memo(
           )}
 
           <div title={micTitle}>
-            {user.state.micMuted ? (
+            {user.state.micMuted && (
               <MicOff
                 className={cn(
                   'h-3 w-3',
                   user.state.serverMuted ? 'text-orange-500' : 'text-red-500'
                 )}
               />
-            ) : (
-              <Mic className="h-3 w-3 text-green-500" />
             )}
+            {isActivelySpeaking && <Mic className="h-3 w-3 text-green-500" />}
           </div>
 
           <div>
-            {user.state.soundMuted ? (
+            {user.state.soundMuted && (
               <HeadphoneOff className="h-3 w-3 text-red-500" />
-            ) : (
-              <Headphones className="h-3 w-3 text-green-500" />
             )}
           </div>
 

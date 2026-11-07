@@ -50,17 +50,17 @@ const VoiceOptionsController = memo(() => {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-6 px-2 transition-all duration-200 ease-in-out"
-        >
-          <Tooltip content={t('voiceOptions')} asChild={false}>
+      <Tooltip content={t('voiceOptions')}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-6 px-2 transition-all duration-200 ease-in-out"
+          >
             <Settings className="w-4 h-4" />
-          </Tooltip>
-        </Button>
-      </PopoverTrigger>
+          </Button>
+        </PopoverTrigger>
+      </Tooltip>
       <PopoverContent align="end" className="w-80">
         <div className="space-y-3">
           <h4 className="font-medium text-sm cursor-default mb-3">
