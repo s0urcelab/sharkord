@@ -148,5 +148,13 @@
   "failedLoadParentMessage": "加载原始消息失败",
   "updateServerConfirmTitle": "更新服务器？",
   "updateServerConfirmMessage": "这将下载并安装最新版本的服务器。服务器会在此过程中重启，导致短暂停机。",
-  "updateServerConfirmLabel": "更新"
+  "updateServerConfirmLabel": "更新",
+  "typeAMessage": "发送消息...",
+  "messageChannel": "给 \"{{name}}\" 发消息",
+  "userStatus": {
+    "online": "在线",
+    "idle": "空闲",
+    "offline": "离线"
+  }
 }
+

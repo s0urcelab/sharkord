@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'PixL';
+  src: url('/PIX-L.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.connect-site-name {
+  display: inline-block;
+  font-family: 'PixL', ui-monospace, monospace;
+  font-size: 40px;
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1;
+  transform-origin: center bottom;
+  -webkit-font-smoothing: none;
+}
+
+.connect-site-name::after {
+  content: '_';
+  animation: connect-typed-blink 1s infinite;
+}
+
+@keyframes connect-typed-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connect-site-name::after {
+    animation: none;
+  }
+}

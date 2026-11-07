@@ -1,11 +1,14 @@
 import type { TFile } from '@sharkord/shared';
 
+const SERVER_URL = `sharkord.speedtest.src.moe:8000`
+
 const getHostFromServer = () => {
   if (import.meta.env.MODE === 'development') {
     return 'localhost:4991';
   }
 
-  return window.location.host;
+  // return window.location.host;
+  return SERVER_URL;
 };
 
 const getUrlFromServer = () => {
@@ -13,7 +16,8 @@ const getUrlFromServer = () => {
     return 'http://localhost:4991';
   }
 
-  const host = window.location.host;
+  // const host = window.location.host;
+  const host = SERVER_URL;
   const currentProtocol = window.location.protocol;
 
   const finalUrl = `${currentProtocol}//${host}`;

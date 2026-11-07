@@ -101,12 +101,12 @@ const TableUser = memo(({ user, refetch }: TTableUserProps) => {
 
         <div className="flex items-center gap-1.5 text-muted-foreground">
           <span
-            className={cn('capitalize text-xs', {
+            className={cn('text-xs', {
               'text-green-500': status === UserStatus.ONLINE,
               'text-yellow-500': status === UserStatus.IDLE
             })}
           >
-            {status}
+            {t(`userStatus.${status}`)}
           </span>
           {user.sessionCount > 1 && (
             <Tooltip
